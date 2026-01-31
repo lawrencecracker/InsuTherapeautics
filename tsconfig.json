@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2020",          // Modern JS features
-    "module": "commonjs",        // Node.js uses CommonJS modules
-    "outDir": "dist",            // Compiled JS files go to "dist" folder
-    "rootDir": ".",              // Root of your TypeScript files
-    "strict": true,              // Enable strict type checking
-    "esModuleInterop": true,     // Allows default imports from CommonJS
-    "skipLibCheck": true         // Skip type-checking of node_modules
+    "outDir": "./dist",
+    "rootDir": ".",
+    "module": "commonjs",
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "strict": true
   },
-  "include": ["**/*.ts"],        // Compile all .ts files in server folder
-  "exclude": ["node_modules"]    // Exclude dependencies
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }

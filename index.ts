@@ -12,12 +12,6 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(
-  cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  })
-);
 
 
 app.use("/api/media", mediaRoutes);
@@ -45,7 +39,8 @@ app.post("/api/investor", async (req, res) => {
     const newInvestor = new Investor(req.body);
     await newInvestor.save();
     res.status(201).json(newInvestor);
-  } catch {
+  } catch (err) {
+    console.error("Error creating investor:", err);
     res.status(500).json({ error: "Failed to create investor" });
   }
 });

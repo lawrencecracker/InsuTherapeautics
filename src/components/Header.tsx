@@ -16,6 +16,9 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
     { name: 'Investor Thesis', id: 'investor' },
     { name: 'Regulatory & Clinical', id: 'regulatory' },
     { name: 'Media & Publications', id: 'media' },
+    { name: 'About', id: 'about' },
+    { name: 'Contact', id: 'contact' },
+    { name: 'Terms', id: 'terms' },
   ];
 
   const handleNavigation = (pageId: string) => {

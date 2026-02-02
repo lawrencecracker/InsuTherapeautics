@@ -1,11 +1,45 @@
 // src/pages/HomePage.tsx
-import React from 'react';
+import React, { useState } from 'react';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
 }
 
 function HomePage({ onNavigate }: HomePageProps) {
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  const closeModal = () => setSelectedItem(null);
+
+  const getItemDetails = (item: string) => {
+    const details = {
+      'buccal-delivery': {
+        title: 'Buccal Delivery',
+        content: 'Our proprietary buccal delivery system enables systemic absorption of peptide therapeutics through the inner cheek mucosa. This approach bypasses gastrointestinal degradation and first-pass metabolism, providing rapid and reliable drug delivery. The buccal mucosa is highly vascularized, allowing for quick systemic exposure while avoiding the enzymatic breakdown that occurs in the digestive tract.'
+      },
+      'peptide-focused': {
+        title: 'Peptide-Focused Design',
+        content: 'Our formulation architecture is specifically optimized for insulin, GLP-1, and other metabolic peptides. We employ advanced stabilization techniques to maintain peptide integrity during processing, storage, and delivery. This peptide-centric approach ensures maximum bioavailability and therapeutic efficacy across our product pipeline.'
+      },
+      'patient-centric': {
+        title: 'Patient-Centric Use',
+        content: 'We prioritize patient experience by developing needle-free dosage forms that are discreet, easy to use, and suitable for daily administration. Our buccal delivery system eliminates the pain and anxiety associated with injections, improving treatment adherence and quality of life for people with diabetes and metabolic disorders.'
+      },
+      'mealtime-insulin': {
+        title: 'Mealtime Insulin',
+        content: 'Our lead program focuses on developing rapid-onset buccal insulin formulations for mealtime glucose control. This needle-free alternative provides fast-acting insulin delivery that mimics the natural physiological response to meals. Clinical studies show comparable pharmacokinetic profiles to injectable insulin with improved patient acceptance and adherence.'
+      },
+      'glp1-peptides': {
+        title: 'GLP-1 Peptides',
+        content: 'We are exploring buccal delivery of GLP-1 receptor agonists and GLP-1-derived therapeutics. These medications help regulate blood sugar, reduce appetite, and support weight management. Our buccal formulations offer improved stability and bioavailability compared to traditional oral GLP-1 medications, potentially expanding treatment options for metabolic disease management.'
+      },
+      'combination-therapies': {
+        title: 'Combination Therapies',
+        content: 'Future development includes combination products that deliver insulin alongside GLP-1 peptides through our buccal platform. These fixed-dose combinations could provide comprehensive metabolic control with simplified dosing regimens. Our platform technology enables co-formulation of multiple peptides while maintaining their individual therapeutic profiles.'
+      }
+    };
+    return details[item as keyof typeof details] || null;
+  };
+
   return (
     <div className="space-y-20">
       {/* Hero Section */}
@@ -59,7 +93,7 @@ function HomePage({ onNavigate }: HomePageProps) {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Our Approach</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <div className="text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onClick={() => setSelectedItem('buccal-delivery')}>
               <div className="mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full mx-auto flex items-center justify-center shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +104,7 @@ function HomePage({ onNavigate }: HomePageProps) {
               <h3 className="text-2xl font-bold mb-4 text-gray-900">Buccal Delivery</h3>
               <p className="text-gray-600 leading-relaxed">Absorption through the inner cheek enables systemic exposure while bypassing gastrointestinal degradation.</p>
             </div>
-            <div className="text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <div className="text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onClick={() => setSelectedItem('peptide-focused')}>
               <div className="mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto flex items-center justify-center shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +115,7 @@ function HomePage({ onNavigate }: HomePageProps) {
               <h3 className="text-2xl font-bold mb-4 text-gray-900">Peptide-Focused Design</h3>
               <p className="text-gray-600 leading-relaxed">Formulation architecture optimized specifically for insulin, GLP-1, and metabolic peptides.</p>
             </div>
-            <div className="text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <div className="text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer" onClick={() => setSelectedItem('patient-centric')}>
               <div className="mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto flex items-center justify-center shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,11 +145,11 @@ function HomePage({ onNavigate }: HomePageProps) {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">What We Are Building</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-teal-500">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-teal-500 cursor-pointer" onClick={() => setSelectedItem('mealtime-insulin')}>
               <h3 className="text-2xl font-bold mb-4 text-teal-700">Mealtime Insulin</h3>
               <p className="text-gray-600 leading-relaxed">Focus: rapid onset buccal insulin delivery</p>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-blue-500">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-blue-500 cursor-pointer" onClick={() => setSelectedItem('glp1-peptides')}>
               <h3 className="text-2xl font-bold mb-4 text-blue-700">GLP-1 Peptides</h3>
               <p className="text-gray-600 leading-relaxed">Exploration of buccal GLP-1 and GLP-1-derived therapeutics</p>
             </div>
@@ -157,6 +191,34 @@ function HomePage({ onNavigate }: HomePageProps) {
           </button>
         </div>
       </section>
+
+      {/* Modal for Item Details */}
+      {selectedItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="text-3xl font-bold text-gray-900">{getItemDetails(selectedItem)?.title}</h3>
+                <button
+                  onClick={closeModal}
+                  className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                >
+                  ×
+                </button>
+              </div>
+              <p className="text-lg text-gray-700 leading-relaxed">{getItemDetails(selectedItem)?.content}</p>
+              <div className="mt-8 flex justify-end">
+                <button
+                  onClick={closeModal}
+                  className="px-6 py-3 bg-teal-600 text-white rounded-xl hover:bg-teal-700 transition-colors duration-300 font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

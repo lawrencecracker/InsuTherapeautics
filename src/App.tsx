@@ -2,11 +2,17 @@ import { useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import CookiesBanner from './components/CookiesBanner';
 import HomePage from './pages/HomePage';
 import TechnologyPage from './pages/TechnologyPage';
 import InvestorPage from './pages/InvestorPage';
 import MediaPage from './pages/MediaPage';
 import RegulatoryPage from './pages/RegulatoryPage';
+import AboutUsPage from './pages/AboutUsPage';
+import ContactUsPage from './pages/ContactUsPage';
+import TermsPage from './pages/TermsPage';
+import ProductPage from './pages/ProductPage';
+import CookiesPolicyPage from './pages/CookiesPolicyPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -23,6 +29,16 @@ function App() {
         return <MediaPage />;
       case 'regulatory':
         return <RegulatoryPage />;
+      case 'about':
+        return <AboutUsPage />;
+      case 'contact':
+        return <ContactUsPage />;
+      case 'terms':
+        return <TermsPage />;
+      case 'product':
+        return <ProductPage />;
+      case 'cookies':
+        return <CookiesPolicyPage />;
       default:
         return <HomePage onNavigate={setCurrentPage} />;
     }
@@ -34,7 +50,8 @@ function App() {
       <main>
         {renderPage()}
       </main>
-      <Footer />
+      <Footer onNavigate={setCurrentPage} />
+      <CookiesBanner />
       <Analytics />
     </div>
   );

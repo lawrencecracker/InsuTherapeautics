@@ -1,0 +1,4 @@
+/* Use @import to avoid editor unknown at-rule warnings while allowing PostCSS/Tailwind to process these */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
